@@ -35,7 +35,7 @@ public class Main {
 
         bill.setIsPaid(true);
 
-        store.completeReservation(reservation.reservationId)
+        store.completeReservation(reservation.reservationId);
     }
 
     public static List<User> addUsers() {
