@@ -3,6 +3,11 @@ public class User {
     String drivingLicense;
     String userName;
 
+    User(int userId, String drivingLicense, String userName) {
+        this.userId = userId;
+        this.drivingLicense = drivingLicense;
+        this.userName = userName;
+    }
     
     public int getUserId() {
         return userId;
