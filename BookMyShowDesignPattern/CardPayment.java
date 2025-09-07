@@ -3,8 +3,8 @@ package BookMyShowDesignPattern;
 
 public class CardPayment extends Payment {
     @Override
-    public Boolean processPayment() {
-        System.out.println("Payment processed through card...");
+    public Boolean processPayment(int amount) {
+        System.out.println("Payment processed through card..." + amount);
         return true;
     }
 }

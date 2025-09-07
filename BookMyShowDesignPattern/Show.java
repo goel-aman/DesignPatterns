@@ -11,10 +11,9 @@ public class Show {
     List<Seat> seats;
     Set<Seat> bookedSeats = new HashSet<>();
     Artist artist;
-    int primaryPricing;
-    int secondaryPricing;
-    int tertiaryPricing;
     Location location;    
+
+    
 
     public int getShowId() {
         return showId;
@@ -46,30 +45,6 @@ public class Show {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
-    }
-
-    public int getPrimaryPricing() {
-        return primaryPricing;
-    }
-
-    public void setPrimaryPricing(int primaryPricing) {
-        this.primaryPricing = primaryPricing;
-    }
-
-    public int getSecondaryPricing() {
-        return secondaryPricing;
-    }
-
-    public void setSecondaryPricing(int secondaryPricing) {
-        this.secondaryPricing = secondaryPricing;
-    }
-
-    public int getTertiaryPricing() {
-        return tertiaryPricing;
-    }
-
-    public void setTertiaryPricing(int tertiaryPricing) {
-        this.tertiaryPricing = tertiaryPricing;
     }
 
     public Location getLocation() {
