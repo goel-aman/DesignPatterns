@@ -23,10 +23,15 @@ public class BookSeats {
 
     public void initiatePayment() {
         if (payment.processPayment(bill.getAmountPaid())) {
-
+            reserveSeats();
         }
     }
 
+    public void reserveSeats() {
+        for(Seat seat: seats) {
+            seat.seatStatus = SeatStatus.RESERVED;
+        }
+    }
 
     // Getters & Setters...
         public List<Seat> getSeat() {

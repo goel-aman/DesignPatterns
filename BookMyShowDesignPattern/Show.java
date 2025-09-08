@@ -13,7 +13,24 @@ public class Show {
     Artist artist;
     Location location;    
 
-    
+    public Show(int showId, List<Seat> seats, Artist artist, Location location) {
+        this.showId = showId;
+        this.seats = seats;
+        this.artist = this.artist;
+        this.location = location;
+    }
+
+    public List<Seat> getAvailableSeat() {
+        List<Seat> ans = new ArrayList<>();
+
+        for(Seat seat: seats) {
+            if(seat.seatStatus == SeatStatus.EMPTY) {
+                ans.add(seat);
+            }
+        }
+
+        return ans;
+    }
 
     public int getShowId() {
         return showId;
