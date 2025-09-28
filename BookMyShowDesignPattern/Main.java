@@ -15,7 +15,50 @@ public class Main {
         CategoryManager catManager = bookingSystem.categoryManagerForCity(displayedCities.get(0));
 
         // user has selected a city - now ask to select a Cateogry.
-                
+        List<Category> categories = catManager.getAllCategories();
+
+        // now user select a category 
+        List<Show> shows = catManager.getCategoryShow(categories.get(0));
+
+        // user selects a shows....
+        // user needs to select seats now...
+
+        Show selectedShow = shows.get(0);
+
+        // display available seats to the user...
+        List<Seat> availableSeats = selectedShow.getAvailableSeat();
+        System.out.println("Available Seat Size is: " + availableSeats.size());
+
+        for(int i=0; i<availableSeats.size(); i++) {
+            System.out.println(availableSeats.get(i).seatId + " " + availableSeats.get(i).seatStatus);
+        }
+        System.out.println("--------");
+        // lets select any two of them... first & second..
+
+        List<Seat> selectedSeat = new ArrayList<>();
+        selectedSeat.add(availableSeats.get(0));
+        selectedSeat.add(availableSeats.get(1));
+
+        // now user selects payment method...
+
+        Payment paymentMethod = new UPIPayment();
+
+        BookSeats bookSeats = new BookSeats(selectedSeat, selectedShow, paymentMethod);
+        
+        // generate bill..
+        bookSeats.generateBill(PricingType.Level2);
+        
+        // initiate payment...
+        bookSeats.initiatePayment();
+
+        // finally reserve the seats...
+        bookSeats.reserveSeats();
+
+        // print available seats now?..
+
+        selectedShow.getAvailableSeat().forEach(seat -> {
+            System.out.println(seat.seatId + " " + seat.seatStatus);
+        });
     }
 
     public static List<User> createUsers() {
@@ -80,6 +123,7 @@ public class Main {
 
         List<Show> shows = new ArrayList();
         List<Seat> seats = new ArrayList();
+
         Seat firstSeat = new Seat();
         firstSeat.seatId = 1;
         firstSeat.primaryPricing = 100;
@@ -87,7 +131,23 @@ public class Main {
         firstSeat.tertiaryPricing = 300;
         firstSeat.seatStatus = SeatStatus.EMPTY;
 
+        Seat secondSeat = new Seat();
+        secondSeat.seatId = 2;
+        secondSeat.primaryPricing = 100;
+        secondSeat.secondaryPricing = 250;
+        secondSeat.tertiaryPricing = 350;
+        secondSeat.seatStatus = SeatStatus.EMPTY;
+
+        Seat thirdSeat = new Seat();
+        thirdSeat.seatId = 3;
+        thirdSeat.primaryPricing = 100;
+        thirdSeat.secondaryPricing = 250;
+        thirdSeat.tertiaryPricing = 350;
+        thirdSeat.seatStatus = SeatStatus.EMPTY;
+
         seats.add(firstSeat);
+        seats.add(secondSeat);
+        seats.add(thirdSeat);
 
         Artist artist = new Artist(1, "Zakir Khan", 4);
         Location location = new Location("DLF Cyber City", 1, 424, 1234);

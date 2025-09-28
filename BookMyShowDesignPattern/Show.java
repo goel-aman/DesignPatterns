@@ -24,7 +24,8 @@ public class Show {
         List<Seat> ans = new ArrayList<>();
 
         for(Seat seat: seats) {
-            if(seat.seatStatus == SeatStatus.EMPTY) {
+            System.out.println("Seat Id: " + seat.seatId + "Seat Status: " + seat.seatStatus);
+            if(seat.seatStatus == SeatStatus.EMPTY) {                
                 ans.add(seat);
             }
         }
