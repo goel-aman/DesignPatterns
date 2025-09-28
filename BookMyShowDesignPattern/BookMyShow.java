@@ -39,7 +39,6 @@ public class BookMyShow {
         return categoryManagers;
     }
 
-
     public void setCategoryManagers(Map<City, CategoryManager> categoryManagers) {
         this.categoryManagers = categoryManagers;
     }
