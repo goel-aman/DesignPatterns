@@ -9,6 +9,10 @@ import StateDesignPattern.ShelfItem;
 
 public class SelectionState implements State {
 
+    public SelectionState() {
+        System.out.println("Vending Machine is in Selection State");
+    }
+
     @Override
     public void PressInsertCoin(VendingMachine vm, List<Coin> coins) {
         // TODO Auto-generated method stub

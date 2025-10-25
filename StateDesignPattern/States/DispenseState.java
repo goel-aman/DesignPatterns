@@ -5,6 +5,10 @@ import StateDesignPattern.VendingMachine;
 import StateDesignPattern.Inventory;
 public class DispenseState implements State {
 
+    public DispenseState() {
+        System.out.println("Vending Machine is in Dispense State");
+    }
+
     @Override
     public void PressInsertCoin(VendingMachine vm, List<Coin> coins) {
         // TODO Auto-generated method stub

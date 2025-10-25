@@ -4,8 +4,16 @@ public class ShelfItem {
     private int shelfId;
     private int shelfCode;
     private Item item;
-    private int capacity;
+    private int shelfCapacity;
     private int itemsCount;
+
+    public ShelfItem(int shelfId, int shelfCode, Item item, int shelfCapacity, int itemsCount) {
+        this.shelfId = shelfId;
+        this.shelfCode = shelfCode;
+        this.item = item;
+        this.shelfCapacity = shelfCapacity;
+        this.itemsCount = itemsCount;
+    }
 
     public int getShelfId() {
         return shelfId;
@@ -31,12 +39,12 @@ public class ShelfItem {
         this.item = item;
     }
     
-    public int getCapacity() {
-        return capacity;
+    public int getShelfCapacity() {
+        return shelfCapacity;
     }
     
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setShelfCapacity(int shelfCapacity) {
+        this.shelfCapacity = shelfCapacity;
     }
     
     public int getItemsCount() {

@@ -6,8 +6,9 @@ import StateDesignPattern.VendingMachine;
 import StateDesignPattern.States.State;
 
 public class IdleState implements State {
+
     public IdleState(VendingMachine vm) {
-        // do nothing...
+        System.out.println("Vending Machine is in Idle State");
         vm.setCoins(new ArrayList<>());
     }
 

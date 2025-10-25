@@ -15,6 +15,12 @@ public class Inventory {
     public void setItems(List<ShelfItem> items) {
         this.items = items;
     }
+
+    public void printShelfItemsAndCount() {
+        for(ShelfItem shelfItem: this.items) {
+            System.out.println("Shelf Code: " + shelfItem.getShelfCode() + " Item Count: " + shelfItem.getItemsCount());
+        }
+    }
     
     public boolean decrementItemCount(int shelfCode) {
         for(ShelfItem shelfItem: this.items) {

@@ -7,6 +7,10 @@ import StateDesignPattern.VendingMachine;
 
 public class HasMoneyState implements State {
 
+    public HasMoneyState() {
+        System.out.println("Vending Machine is in Has Money State");
+    }
+
     @Override
     public void PressInsertCoin(VendingMachine vm, List<Coin> coins) {
         // TODO Auto-generated method stub
