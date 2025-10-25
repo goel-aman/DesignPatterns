@@ -1,13 +1,14 @@
 package StateDesignPattern.States;
 import java.util.List;
-
+import java.util.ArrayList;
 import StateDesignPattern.Coin;
 import StateDesignPattern.VendingMachine;
 import StateDesignPattern.States.State;
 
 public class IdleState implements State {
-    public IdleState() {
+    public IdleState(VendingMachine vm) {
         // do nothing...
+        vm.setCoins(new ArrayList<>());
     }
 
     @Override
@@ -39,7 +40,7 @@ public class IdleState implements State {
     }
 
     @Override
-    public void startDispense(VendingMachine vm) {
+    public void startDispense(VendingMachine vm, int shelfCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'startDispense'");
     }

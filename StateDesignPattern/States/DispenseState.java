@@ -1,10 +1,8 @@
 package StateDesignPattern.States;
-
 import java.util.List;
-
 import StateDesignPattern.Coin;
 import StateDesignPattern.VendingMachine;
-
+import StateDesignPattern.Inventory;
 public class DispenseState implements State {
 
     @Override
@@ -32,15 +30,23 @@ public class DispenseState implements State {
     }
 
     @Override
-    public void startDispense(VendingMachine vm) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'startDispense'");
+    public void startDispense(VendingMachine vm, int shelfCode) {
+        System.out.println("Dispensing item...");
+        
+        Inventory inventory = vm.getInventory();
+        boolean result = inventory.decrementItemCount(shelfCode);
+        if(result) {
+            System.out.println("Item dispensed successfully.");
+        } else {
+            System.out.println("Failed to dispense item. Item may be out of stock.");
+        }
+        
+        vm.setCurrentState(new IdleState(vm));
     }
 
     @Override
     public void chooseItem(VendingMachine vm, int shelfCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'chooseItem'");
-    }
-    
+    }    
 }

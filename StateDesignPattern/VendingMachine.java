@@ -9,7 +9,7 @@ public class VendingMachine {
 
     public VendingMachine(Inventory inventory) {
         this.inventory = inventory;
-        this.currentState = new IdleState();
+        this.currentState = new IdleState(this);
         List<Coin> coins = null;
     }
 

@@ -42,6 +42,16 @@ public class ShelfItem {
     public int getItemsCount() {
         return itemsCount;
     }
+
+    public boolean reduceItemsCount(int value) {
+        if(this.itemsCount < value) {
+            return false;
+        }
+
+        this.itemsCount -= value;
+        this.itemsCount = Math.max(0, this.itemsCount);
+        return true;
+    }
     
     public void setItemsCount(int itemsCount) {
         this.itemsCount = itemsCount;

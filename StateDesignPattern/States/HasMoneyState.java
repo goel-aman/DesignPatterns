@@ -33,14 +33,17 @@ public class HasMoneyState implements State {
         // TODO Auto-generated method stub
 
         // refune the money.
-        vm.refundCoins();
+        List<Coin> coins = vm.refundCoins();
+        for(Coin coin: coins) {
+            System.out.println("Refunded coin of value: " + coin.value);
+        }
 
         // set the state to idle state.
-        vm.setCurrentState(new IdleState());
+        vm.setCurrentState(new IdleState(vm));
     }
 
     @Override
-    public void startDispense(VendingMachine vm) {
+    public void startDispense(VendingMachine vm, int shelfCode) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'startDispense'");
     }
