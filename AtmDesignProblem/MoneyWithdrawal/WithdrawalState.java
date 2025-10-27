@@ -33,18 +33,19 @@ public class WithdrawalState implements State {
 
     @Override
     public List<Note> withdrawMoney(AtmMachine atmMachine, Integer amount) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'withdrawMoney'");
+        List<Note> notes = 
     }
 
     @Override
     public void cancelTransaction(AtmMachine atmMachine) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cancelTransaction'");
+        // reset the account number 
+        atmMachine.setAccountNumber(null);
+
+        atmMachine.setCurrentState(new IdleState());
     }
 
     @Override
-    public void depositeMoney(AtmMachine atmMachine) {
+    public void depositeMoney(AtmMachine atmMachine, List<Note> notes) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
     }

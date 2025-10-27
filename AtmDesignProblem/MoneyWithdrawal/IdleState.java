@@ -49,7 +49,7 @@ public class IdleState implements State {
     }
 
     @Override
-    public void depositeMoney(AtmMachine atmMachine) {
+    public void depositeMoney(AtmMachine atmMachine, List<Note> notes) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
     }

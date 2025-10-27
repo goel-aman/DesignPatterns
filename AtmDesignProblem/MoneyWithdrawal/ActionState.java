@@ -17,6 +17,9 @@ public class ActionState implements State {
     public void accountInformation(AtmMachine atmMachine) {
         atmMachine.getAccountService().displayAccountDetails(atmMachine.getAccountNumber());
 
+        // reset the account number 
+        atmMachine.setAccountNumber(null);
+
         // after displaying account information, change state back to idle state.
         atmMachine.setCurrentState(new IdleState());
     }
@@ -29,8 +32,8 @@ public class ActionState implements State {
 
     @Override
     public void depositMoneyClicked(AtmMachine atmMachine) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'depositMoneyClicked'");
+        // change the state to money deposit state..
+        atmMachine.setCurrentState(new DepositState());
     }
 
     @Override
@@ -41,11 +44,14 @@ public class ActionState implements State {
 
     @Override
     public void cancelTransaction(AtmMachine atmMachine) {
-        
+        // reset the account number 
+        atmMachine.setAccountNumber(null);
+
+        atmMachine.setCurrentState(new IdleState());
     }
 
     @Override
-    public void depositeMoney(AtmMachine atmMachine) {
+    public void depositeMoney(AtmMachine atmMachine, List<Note> notes) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
     }
