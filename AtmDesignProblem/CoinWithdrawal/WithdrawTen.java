@@ -1,5 +1,28 @@
 package AtmDesignProblem.CoinWithdrawal;
 
-public class WithdrawTen {
+import java.util.List;
+
+import AtmDesignProblem.CashInventory;
+import AtmDesignProblem.Note;
+import AtmDesignProblem.Withdraw;
+
+public class WithdrawTen implements Withdraw {
+    private Withdraw next;
+
+    public WithdrawTen(Withdraw next) {
+        this.next = next;
+    }
+
+    @Override
+    public List<Note> withdraw(Integer amount, CashInventory cashInventory) {
+        List<Note> notes = new ComputeAvailabeNotes().compute(amount, cashInventory, AtmDesignProblem.Value.Ten);
+        List<Note> remainingNotes = next.withdraw(amount - (AtmDesignProblem.Value.Ten.getValue() *  notes.size()), cashInventory);
+
+        for(Note note: remainingNotes) {
+            notes.add(note);
+        }
+
+        return notes;
+    }
     
 }

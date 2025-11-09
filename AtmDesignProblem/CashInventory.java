@@ -18,7 +18,7 @@ public class CashInventory {
     }
 
     public void decrementNoteCount(Value value, Integer count) {
-        cashInventoryMap.put(value, cashInventoryMap.get(note) - count);
+        cashInventoryMap.put(value, cashInventoryMap.get(value) - count);
     }
 
     public void setNoteCount(Value value, Integer count) {

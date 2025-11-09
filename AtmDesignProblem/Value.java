@@ -15,4 +15,8 @@ public enum Value {
     Value(int value) {
         this.value = value;
     }
+
+    public Integer getValue() {
+        return value;
+    }
 }

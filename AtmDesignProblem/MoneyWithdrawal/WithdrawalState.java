@@ -1,9 +1,11 @@
 package AtmDesignProblem.MoneyWithdrawal;
 import java.util.List;
 
+import AtmDesignProblem.CoinWithdrawal.*;
 import AtmDesignProblem.AtmMachine;
 import AtmDesignProblem.Note;
 import AtmDesignProblem.State;
+import AtmDesignProblem.Withdraw;
 
 public class WithdrawalState implements State {
 
@@ -33,7 +35,32 @@ public class WithdrawalState implements State {
 
     @Override
     public List<Note> withdrawMoney(AtmMachine atmMachine, Integer amount) {
-        List<Note> notes = 
+        Withdraw withdrawChain = new WithdrawFiveHundred(
+            new WithdrawHundred(
+                new WithdrawFifty(
+                    new WithdrawTwenty(
+                        new WithdrawTen(
+                            new WithdrawFive(
+                                new WithdrawTwo(
+                                    new WithdrawOne(null
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        );
+
+        List<Note> notes = withdrawChain.withdraw(amount, atmMachine.getCashInventory());
+        for(Note note: notes) {
+            System.out.print(note.getValue().getValue() + " ");
+        }
+        System.out.println("------");
+
+        atmMachine.setCurrentState(new IdleState());
+
+        return notes;
     }
 
     @Override

@@ -29,4 +29,8 @@ public class AtmMachine {
     public AccountService getAccountService() {
         return this.accountService;
     }
+
+    public CashInventory getCashInventory() {
+        return cashInventory;
+    }
 }

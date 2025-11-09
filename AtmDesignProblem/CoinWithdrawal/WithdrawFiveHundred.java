@@ -8,24 +8,22 @@ import AtmDesignProblem.Note;
 import AtmDesignProblem.Value;
 import AtmDesignProblem.Withdraw;
 
-
-public class WithdrawFiveHundred implements Withdraw{
+public class WithdrawFiveHundred implements Withdraw {
 
     private Withdraw next;
 
+    public WithdrawFiveHundred(Withdraw next) {
+        this.next = next;
+    }
+
     @Override
     public List<Note> withdraw(Integer amount, CashInventory cashInventory) {
-        List<Note> notes = new ArrayList<>();
-        
-        int numberOfNotes = amount / 500;
-        int notesInInventory = cashInventory.getNoteCount(Value.FiveHundred);
-        int avalilableNotes = Math.min(numberOfNotes, notesInInventory);
-        
-        for(int i=0; i<avalilableNotes; i++) {
-            notes.add(new Note(Value.FiveHundred));
-        }
+        List<Note> notes = new ComputeAvailabeNotes().compute(amount, cashInventory, Value.FiveHundred);
+        List<Note> remainingNotes = next.withdraw(amount - (Value.FiveHundred.getValue() *  notes.size()), cashInventory);
 
-        List<Note> remainingNotes = 
+        for(Note note: remainingNotes) {
+            notes.add(note);
+        }
 
         return notes;
     }
