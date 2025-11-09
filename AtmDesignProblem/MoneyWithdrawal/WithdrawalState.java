@@ -55,9 +55,13 @@ public class WithdrawalState implements State {
         List<Note> notes = withdrawChain.withdraw(amount, atmMachine.getCashInventory());
         for(Note note: notes) {
             System.out.print(note.getValue().getValue() + " ");
+
+            // reduce the count by one...
+            atmMachine.getCashInventory().decrementNoteCount(note.getValue(), 1);
         }
         System.out.println("------");
 
+        atmMachine.setAccountNumber(null);
         atmMachine.setCurrentState(new IdleState());
 
         return notes;
@@ -76,5 +80,13 @@ public class WithdrawalState implements State {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
     }
+
+    @Override
+    public void submit(AtmMachine atmMachine) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'submit'");
+    }
+
+    
     
 }

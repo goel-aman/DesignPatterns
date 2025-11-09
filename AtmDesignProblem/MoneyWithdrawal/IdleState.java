@@ -10,12 +10,11 @@ public class IdleState implements State {
 
     @Override
     public void enterAccountDetails(Integer accountNumber, AtmMachine atmMachine) {
-        // TODO Auto-generated method stub
         atmMachine.setAccountNumber(accountNumber);
 
         // once the account details are entered, change the state to action state.
+        System.out.println("State got changed to ActionState..");
         atmMachine.setCurrentState(new ActionState());
-
     }
 
     @Override
@@ -52,6 +51,12 @@ public class IdleState implements State {
     public void depositeMoney(AtmMachine atmMachine, List<Note> notes) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
+    }
+
+    @Override
+    public void submit(AtmMachine atmMachine) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'submit'");
     }
 
 }

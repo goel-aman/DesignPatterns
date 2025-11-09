@@ -55,13 +55,26 @@ public class DepositState implements State {
 
         notesCollected.clear();
 
-        // update the state of the machine to latest... 
+        // update the state of the machine to Idle..
+        atmMachine.setCurrentState(new IdleState()); 
     }
 
     @Override
     public void depositeMoney(AtmMachine atmMachine, List<Note> notes) {
-        
+        for(Note note: notes) {
+            notesCollected.add(note);
+        }
     }
-    
 
+    public void submit(AtmMachine atmMachine) {
+        for(Note note: notesCollected) {
+            atmMachine.getCashInventory().incrementNoteCount(note.getValue(), 1);
+        }
+
+        System.out.println("Transaction successfull amount got deposited..");
+        
+        // setting the account number as null...
+        atmMachine.setAccountNumber(null);
+        atmMachine.setCurrentState(new IdleState());
+    }
 }

@@ -14,7 +14,7 @@ public class CashInventory {
     }
 
     public void incrementNoteCount(Value value, Integer count) {
-        cashInventoryMap.put(value, cashInventoryMap.get(value) + count);
+        cashInventoryMap.put(value, cashInventoryMap.getOrDefault(value, 0) + count);
     }
 
     public void decrementNoteCount(Value value, Integer count) {

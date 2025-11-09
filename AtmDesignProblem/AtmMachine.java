@@ -22,6 +22,10 @@ public class AtmMachine {
         return this.accountNumber;
     }
 
+    public State getCurrentState() {
+        return currentState;
+    }
+
     public void setCurrentState(State state) {
         this.currentState = state;
     }

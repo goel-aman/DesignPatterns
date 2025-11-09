@@ -18,12 +18,14 @@ public class WithdrawOne implements Withdraw  {
     public List<Note> withdraw(Integer amount, CashInventory cashInventory) {
         List<Note> notes = new ComputeAvailabeNotes().compute(amount, cashInventory, AtmDesignProblem.Value.One);
         
-        List<Note> remainingNotes = next.withdraw(amount - (AtmDesignProblem.Value.One.getValue() *  notes.size()), cashInventory);
-        
-        for(Note note: remainingNotes) {
-            notes.add(note);
+        if(next != null) {
+            List<Note> remainingNotes = next.withdraw(amount - (AtmDesignProblem.Value.One.getValue() *  notes.size()), cashInventory);
+            
+            for(Note note: remainingNotes) {
+                notes.add(note);
+            }
         }
-
+        
         return notes;
     }
     

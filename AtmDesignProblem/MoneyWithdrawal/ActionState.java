@@ -26,6 +26,8 @@ public class ActionState implements State {
 
     @Override
     public void withdrawMoneyClicked(AtmMachine atmMachine) {
+        System.out.println("State got changed to: Withdrawal State");
+
         // change the state to money withdrawal state.
         atmMachine.setCurrentState(new WithdrawalState());
     }
@@ -56,6 +58,9 @@ public class ActionState implements State {
         throw new UnsupportedOperationException("Unimplemented method 'depositeMoney'");
     }
 
-    
-    
+    @Override
+    public void submit(AtmMachine atmMachine) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'submit'");
+    }
 }

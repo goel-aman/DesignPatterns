@@ -19,4 +19,7 @@ public interface State {
 
     // function for Deposit State...
     public void depositeMoney(AtmMachine atmMachine, List<Note> notes);
+
+    // function when the deposited money gets finally submitted in machine...
+    public void submit(AtmMachine atmMachine);
 }
