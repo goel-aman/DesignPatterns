@@ -10,10 +10,12 @@ public class GroupManager {
 
     public void addGroup(Group group, Person person) {
         groupsMapping.putIfAbsent(person, new ArrayList<>());
+        // put condition ensures no duplicate groups for a person
+        
         groupsMapping.get(person).add(group);
     }
 
-    public List<Group> getGroupsForPerson(Person person) {
+    public List<Group> getAllGroupForPerson(Person person) {
         return groupsMapping.getOrDefault(person, new ArrayList<>());
     }
 
