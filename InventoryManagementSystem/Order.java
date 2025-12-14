@@ -14,5 +14,12 @@ public class Order {
     String invoiceId;
     List<Item> item;
     OrderStatus orderStatus;
-    
+
+    public Order(String orderId, List<Item> item) {
+        this.orderId = orderId;
+        this.item = item;
+        this.paymentId = null;
+        this.invoiceId = null;
+        this.orderStatus = OrderStatus.Created;
+    }
 }
