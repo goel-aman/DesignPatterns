@@ -1,11 +1,18 @@
 package InventoryManagementSystem;
-
+import java.util.List;
 public class NearestWarehouseStrategy implements WarehouseSelector{
 
     @Override
-    public Warehouse getWarehouse(Address address) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWarehouse'");
+    public Warehouse getWarehouse(Address address, List<Warehouse> warehouses) {
+        int warehouseLength = warehouses.size();
+
+        for(int i=0; i<warehouseLength; i++) {
+            if(warehouses.get(i).location.getPinCode() == address.getPinCode()) {
+                return warehouses.get(i);
+            }
+        }
+
+        return new Warehouse(null, null, null, null);
     }
 
 }

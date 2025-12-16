@@ -9,10 +9,10 @@ enum CategoryType {
 }
 
 public class Item {
-    String itemId;
-    int price;
-    CategoryType category;
-    String itemName;
+    private String itemId;
+    private int price;
+    private CategoryType category;
+    private String itemName;
 
     public Item(String itemId, int price, CategoryType category, String itemName) {
         this.itemId = itemId;

@@ -9,11 +9,11 @@ enum OrderStatus {
 }
 
 public class Order {
-    String orderId;
-    String paymentId;
-    String invoiceId;
-    List<Item> item;
-    OrderStatus orderStatus;
+    private String orderId;
+    private String paymentId;
+    private String invoiceId;
+    private List<Item> item;
+    private OrderStatus orderStatus;
 
     public Order(String orderId, List<Item> item) {
         this.orderId = orderId;
@@ -22,4 +22,16 @@ public class Order {
         this.invoiceId = null;
         this.orderStatus = OrderStatus.Created;
     }
+    
+    public int computeTotalCost() {
+        int sum = 0;
+        int itemLength = item.size();
+
+        for(int i=0; i<itemLength; i++) {
+            sum = sum + item.get(i).getPrice();
+        }
+
+        return sum;
+    }
+
 }

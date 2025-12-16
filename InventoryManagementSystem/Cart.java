@@ -21,12 +21,16 @@ public class Cart {
 
     public boolean removeItemFromCart(Item item) {
         for(int i=0; i<items.size(); i++) {
-            if(items.get(i).itemId == item.itemId) {
+            if(items.get(i).getItemId() == item.getItemId()) {
                 items.remove(i);
                 return true;
             }
         }
 
         return false;
+    }
+
+    public List<Item> getCartItems() {
+        return items;
     }
 }
