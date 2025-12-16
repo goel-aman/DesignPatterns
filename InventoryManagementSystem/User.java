@@ -2,10 +2,10 @@ package InventoryManagementSystem;
 import java.util.*;
 
 public class User {
-    String userId;
-    String username;
-    List<Address> addresses;
-
+    private String userId;
+    private String username;
+    private List<Address> addresses;
+    
     public User(String userId, String username)  {
         this.userId = userId;
         this.username = username;
@@ -17,7 +17,7 @@ public class User {
     }
 
     public List<Address> getAllAddresses() {
-
+        return this.addresses;
     }
 }
 

@@ -2,7 +2,7 @@ package InventoryManagementSystem;
 
 
 enum City {
-    Delh,
+    Delhi,
     jaipur,
     Mumbai,
     Banagalore,

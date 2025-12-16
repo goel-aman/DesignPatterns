@@ -12,7 +12,7 @@ public class NearestWarehouseStrategy implements WarehouseSelector{
             }
         }
 
-        return new Warehouse(null, null, null, null);
+        return new Warehouse(null, null, null);
     }
 
 }

@@ -11,6 +11,10 @@ public class InventoryManager {
         this.itemsInCategory = new HashMap<>();
     }
 
+    public List<InventoryItem> inventoryList() {
+        return new ArrayList<>(manager.values());
+    }
+
     public InventoryItem getInventoryItem(String itemId) {
         return manager.get(itemId);
     }
