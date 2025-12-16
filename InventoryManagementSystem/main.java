@@ -55,6 +55,12 @@ public class main {
 
         // once the cart is created... time to convert it into an order...
         OrderService orderService = new OrderService();
-        
+
+        Payment payment = new Payment();
+
+        OrderRepository orderRepository = new OrderRepository();
+
+        String orderId = orderService.placeOrder(userCart, payment, orderRepository);
+        System.out.println("OrderId is: " + orderId);
     }
 }

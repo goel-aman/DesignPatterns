@@ -2,17 +2,18 @@ package InventoryManagementSystem;
 import java.util.*;
 
 public class Cart {
-    String cartId;
-    List<Item> items;
-    String userId;
+    private String cartId;
+    private List<Item> items;
+    private String userId;
 
     Cart(String cartId, String userId) {
         this.cartId = cartId;
         this.userId = userId;
+        this.items = new ArrayList<>();
     }
 
     public void clearCart() {
-        this.items = null;
+        this.items = new ArrayList<>();
     }
 
     public void addToCart(Item item) {
@@ -33,4 +34,30 @@ public class Cart {
     public List<Item> getCartItems() {
         return items;
     }
+
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    
 }
