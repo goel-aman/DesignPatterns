@@ -15,6 +15,10 @@ public class User {
     public void addAddress(Address address) {
         this.addresses.add(address);
     }
+
+    public List<Address> getAllAddresses() {
+
+    }
 }
 
 
