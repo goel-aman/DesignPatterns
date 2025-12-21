@@ -9,7 +9,7 @@ public class LibraryConcreteAggregate implements Aggregate {
     }
 
     @Override
-    public IteratorInterface createIterator() {
+    public IteratorInterface<Book> createIterator() {
         return new BookIterator(bookList);
     }   
 }
