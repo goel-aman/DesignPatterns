@@ -2,7 +2,7 @@ package MediatorDesignPattern;
 import java.util.*;
 
 public class AuctionManager implements AuctionMediator {
-    List<Participant> participants;
+    List<Bidder> participants;
 
     public AuctionManager() {
         this.participants = new ArrayList<>();
@@ -10,13 +10,13 @@ public class AuctionManager implements AuctionMediator {
 
     @Override
     public void addParticipant(Participant participant) {
-        participants.add(participant);
+        participants.add((Bidder) participant);
     }
 
     @Override
     public void triggerBid(int amount, String bidderName) {
-        for(Participant p: participants) {
-            if(p != this) {
+        for(Bidder p: participants) {
+            if(p.bidderName != bidderName) {
                 p.receiveBid(amount, bidderName);
             }
         }

@@ -16,13 +16,12 @@ public class Bidder implements Participant {
 
     @Override
     public void bid(int amount) {
-        //
+        mediator.triggerBid(amount, bidderName);
     }
 
     @Override
     public void receiveBid(int amount, String bidderName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'receiveBid'");
+       System.out.println("Bidder: " + this.bidderName + "received notification of bid amount of: " + amount);
     }
     
 }
