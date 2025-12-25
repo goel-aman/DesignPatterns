@@ -5,8 +5,9 @@ public class ShoppingCart {
     List<Product> products;
 
     public ShoppingCart(List<Product> products) {
+        this.products = new ArrayList<>();
         for(Product product : products) {
-            products.add(new PercentageProductCoupon(new ProductTypeCoupon(product, 5), 10));
+            this.products.add(new PercentageProductCoupon(new ProductTypeCoupon(product, 5), 10));
         }
     }
 
