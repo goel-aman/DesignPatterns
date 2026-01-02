@@ -7,7 +7,7 @@ public class DBResourceManager {
     private int maxConnections;
     private int currentConnections;
 
-    private static final DBResourceManager instance = new DBResourceManager(20);
+    private static  DBResourceManager instance = new DBResourceManager(20);
 
     private DBResourceManager(int maxConnections) {
         this.maxConnections = maxConnections;
@@ -17,6 +17,13 @@ public class DBResourceManager {
     }
 
     public static DBResourceManager getInstance() {
+        if(instance == null) {
+            synchronized(DBResourceManager.class) {
+                if(instance == null) {
+                    instance = new DBResourceManager(30);
+                }
+            }
+        }
 
         return instance;
     }
