@@ -7,7 +7,7 @@ public class DBResourceManager {
     private int maxConnections;
     private int currentConnections;
 
-    private static  DBResourceManager instance = new DBResourceManager(20);
+    private static  DBResourceManager instance = null;
 
     private DBResourceManager(int maxConnections) {
         this.maxConnections = maxConnections;
@@ -28,6 +28,29 @@ public class DBResourceManager {
         return instance;
     }
 
-
-
+    public DBConnection getConnection() throws Exception {
+        DBResourceManager resourceManager = getInstance();
+        synchronized (this) {
+            if(resourceManager.freeConnections.size() > 0) {
+                DBConnection connection = resourceManager.freeConnections.remove(0);
+                resourceManager.inUseConnections.add(connection);
+                return connection;
+            } else if (resourceManager.currentConnections < resourceManager.maxConnections) {
+                DBConnection newConnection = new DBConnection();
+                resourceManager.inUseConnections.add(newConnection);
+                resourceManager.currentConnections++;
+                return newConnection;
+            } else {
+                throw new Exception("No available DB Connection");
+            }
+        }
+    } 
+    
+    public void removeConnection(DBConnection connection) {
+        synchronized(this) {
+            DBResourceManager resourceManager = getInstance();
+            resourceManager.inUseConnections.remove(connection);
+            resourceManager.freeConnections.add(connection);
+        }
+    }
 }
