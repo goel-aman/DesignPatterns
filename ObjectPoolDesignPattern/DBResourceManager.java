@@ -7,7 +7,7 @@ public class DBResourceManager {
     private int maxConnections;
     private int currentConnections;
 
-    private static  DBResourceManager instance = null;
+    private static volatile  DBResourceManager instance = null;
 
     private DBResourceManager(int maxConnections) {
         this.maxConnections = maxConnections;
@@ -20,7 +20,7 @@ public class DBResourceManager {
         if(instance == null) {
             synchronized(DBResourceManager.class) {
                 if(instance == null) {
-                    instance = new DBResourceManager(30);
+                    instance = new DBResourceManager(6);
                 }
             }
         }
@@ -29,16 +29,18 @@ public class DBResourceManager {
     }
 
     public DBConnection getConnection() throws Exception {
-        DBResourceManager resourceManager = getInstance();
         synchronized (this) {
-            if(resourceManager.freeConnections.size() > 0) {
-                DBConnection connection = resourceManager.freeConnections.remove(0);
-                resourceManager.inUseConnections.add(connection);
+            if(this.freeConnections.size() > 0) {
+                System.out.println("Reusing existing DB Connection...");
+
+                DBConnection connection = this.freeConnections.remove(0);
+                this.inUseConnections.add(connection);
                 return connection;
-            } else if (resourceManager.currentConnections < resourceManager.maxConnections) {
+            } else if (this.currentConnections < this.maxConnections) {
+                System.out.println("Creating new DB Connection...");
                 DBConnection newConnection = new DBConnection();
-                resourceManager.inUseConnections.add(newConnection);
-                resourceManager.currentConnections++;
+                this.inUseConnections.add(newConnection);
+                this.currentConnections++;
                 return newConnection;
             } else {
                 throw new Exception("No available DB Connection");
@@ -48,9 +50,8 @@ public class DBResourceManager {
     
     public void removeConnection(DBConnection connection) {
         synchronized(this) {
-            DBResourceManager resourceManager = getInstance();
-            resourceManager.inUseConnections.remove(connection);
-            resourceManager.freeConnections.add(connection);
+            this.inUseConnections.remove(connection);
+            this.freeConnections.add(connection);
         }
     }
 }
